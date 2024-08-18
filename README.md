@@ -32,7 +32,7 @@ En otra pestaña, vaya a [https://ca.account.sony.com/api/v1/ssocookie](https://
 
 Si ha iniciado sesión, debería ver un texto similar a este
 
-```bash
+```json
 {"npsso":"<64 character npsso code>"}
 ```
 Este código npsso se utilizará en la API para fines de autenticación. El token de actualización que se genera a partir de npsso dura aproximadamente 2 meses. Después de eso, debe obtener un nuevo token npsso. El bot imprimirá una advertencia si quedan menos de 3 días para que caduque el token de actualización.
