@@ -41,4 +41,24 @@ jobs:
       run: |
         pyinstaller --onefile app.py
     - name: Get version number
-      run: echo "v1.0.$(git rev-list --count HEAD)" > VERSION.txt
+      id: get_version
+      run: echo "::set-output name=version::v1.0.$(git rev-list --count HEAD)"
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      with:
+        tag_name: ${{ steps.get_version.outputs.version }}
+        release_name: Release ${{ steps.get_version.outputs.version }}
+        draft: false
+        prerelease: false
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./dist/app
+        asset_name: PlayRanker-${{ steps.get_version.outputs.version }}
+        asset_content_type: application/octet-stream
