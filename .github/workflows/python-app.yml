@@ -40,3 +40,5 @@ jobs:
     - name: Build executable
       run: |
         pyinstaller --onefile app.py
+    - name: Get version number
+      run: echo "v1.0.$(git rev-list --count HEAD)" > VERSION.txt
