@@ -3,7 +3,7 @@
 La herramienta definitiva para los jugadores que buscan evaluar la dificultad y calidad de los juegos en PSN. Obtén un análisis detallado de trofeos, puntuaciones y tiempo de juego para encontrar los mejores juegos que se ajusten a tus preferencias.
 
 ![Python Version](https://img.shields.io/badge/python-3.12%2B-blue)
-![Build Status](https://img.shields.io/github/actions/workflow/status/rafacc87/PlayRanker/ci.yml)
+[![PlayRanker](https://github.com/rafacc87/PlayRanker/actions/workflows/python-app.yml/badge.svg)](https://github.com/rafacc87/PlayRanker/actions/workflows/python-app.yml)
 ![Test Coverage](https://img.shields.io/codecov/c/github/rafacc87/PlayRanker)
 
 ## 🛠️ Instalación
