@@ -29,10 +29,10 @@ def metracritic_score(game_title):
         soup = BeautifulSoup(response.content, 'html.parser')
 
         # Score review
-        result_review = get_score_metracritic(soup, 'c-siteReviewScore')
+        result_review = get_score_metracritic(soup, 'c-siteReviewScore', True)
 
         # Score user
-        result_user = get_score_metracritic(soup, 'c-siteReviewScore_user')
+        result_user = get_score_metracritic(soup, 'c-siteReviewScore_user', False)
     except Exception as e:
         print()
         print(f"Error obteniendo puntuación de Metacritic para {game_title}: {e}")
@@ -151,15 +151,18 @@ def get_reviews(result, metacritic_url, path):
     return result
 
 
-def get_score_metracritic(soup, class_name):
+def get_score_metracritic(soup, class_name, divid):
+    result = 0
     score_review = soup.find('div', class_=class_name)
     if score_review:
         score_review_span = score_review.find('span')
         if score_review_span:
             if score_review_span.text != 'tbd':
-                result_review = float(score_review_span.text.strip())
-                result_review = result_review / 10
-    return result_review
+                result = float(score_review_span.text.strip())
+                result = result
+                if divid:
+                    result = result / 10
+    return result
 
 
 def read_psn(psn, game_time, platinium_time, titles, start_time):
