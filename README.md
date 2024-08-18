@@ -63,14 +63,15 @@ Para ejecutar las pruebas unitarias, utiliza pytest:
    ```
 ## 🏗️ Estructura del Proyecto
    ```bash
-   ListGame/
+      PlayRanker/
    │
    ├── app.py               # Archivo principal
    ├── selenium_tools.py    # Funciones relacionadas con Selenium
    ├── utility.py           # Funciones auxiliares
+   ├── web.py               # Funciones relacionadas con el scraping
    ├── tests/               # Pruebas unitarias
    ├── README.md            # Documentación
-   └── requirements.txt     # Dependencias   
+   └── requirements.txt     # Dependencias
    ```
 
 ## 📝 Licencia
