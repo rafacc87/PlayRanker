@@ -24,11 +24,18 @@ La herramienta definitiva para los jugadores que buscan evaluar la dificultad y 
    ```
 
 ## 🔑 Cómo obtener el Token de PSN
-Para usar las funciones relacionadas con PSN, necesitas un token de autenticación. Sigue estos pasos:
+Debes obtener el código de 64 caracteres de npsso. Debe seguir los siguientes pasos:
 
-Ve a la [página oficial de PlayStation](https://www.playstation.com/) e inicia sesión.
-Usa las herramientas de desarrollo del navegador para interceptar la solicitud que contiene tu token de autenticación (**`access_token`**).
-Copia el token y añádelo a tus variables de entorno o configúralo directamente en tu código.
+Inicia sesión en tu cuenta [My PlayStation] (https://www.playstation.com/).
+
+En otra pestaña, vaya a [https://ca.account.sony.com/api/v1/ssocookie](https://ca.account.sony.com/api/v1/ssocookie)
+
+Si ha iniciado sesión, debería ver un texto similar a este
+
+```bash
+{"npsso":"<64 character npsso code>"}
+```
+Este código npsso se utilizará en la API para fines de autenticación. El token de actualización que se genera a partir de npsso dura aproximadamente 2 meses. Después de eso, debe obtener un nuevo token npsso. El bot imprimirá una advertencia si quedan menos de 3 días para que caduque el token de actualización.
 ## 🚀 Uso
 Una vez configurado todo, puedes ejecutar el proyecto con el siguiente comando:
 
