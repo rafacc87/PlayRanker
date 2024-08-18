@@ -2,9 +2,9 @@ from difflib import SequenceMatcher
 import json
 import re
 import time
-from turtle import pd
-import requests  # type: ignore
-import yaml  # type: ignore
+import pandas as pd
+import requests
+import yaml
 
 
 gist_url = "https://gist.githubusercontent.com/rafacc87/03b8cf3b7c903d5412f64217586a8ee5/raw"

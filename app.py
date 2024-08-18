@@ -1,4 +1,4 @@
-from psnawp_api import psnawp  # type: ignore
+from psnawp_api import psnawp
 import time
 
 from selenium_tools import close_driver, initialize_selenium
@@ -33,7 +33,7 @@ try:
     # Mostrar progreso y tiempo restante
     end_time(start_time, num_titles)
 
-    # Crear DataFrame y guardar en Excel
+    # Guardar en Excel
     create_excel(game_time, platinium_time, data)
 
     print("Hoja de cálculo generada exitosamente.")
