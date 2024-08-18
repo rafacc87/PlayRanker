@@ -26,9 +26,9 @@ La herramienta definitiva para los jugadores que buscan evaluar la dificultad y 
 ## 🔑 Cómo obtener el Token de PSN
 Debes obtener el código de 64 caracteres de npsso. Debe seguir los siguientes pasos:
 
-Inicia sesión en tu cuenta [My PlayStation] (https://www.playstation.com/).
+Inicia sesión en tu cuenta [My PlayStation](https://www.playstation.com/).
 
-En otra pestaña, vaya a [https://ca.account.sony.com/api/v1/ssocookie](https://ca.account.sony.com/api/v1/ssocookie)
+En otra pestaña, vaya a [https://ca.account.sony.com/api/v1/ssocookie](https://ca.account.sony.com/api/v1/ssocookie).
 
 Si ha iniciado sesión, debería ver un texto similar a este
 
