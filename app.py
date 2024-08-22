@@ -9,6 +9,7 @@ from web import read_psn
 try:
     cfg = load_config()
     psn = cfg['PSN']
+    is_xls = psn['export'] == 'xls'
     game_time = psn['game_time']
     platinium_time = psn['platinium_time']
 
@@ -34,7 +35,7 @@ try:
     end_time(start_time, num_titles)
 
     # Guardar en Excel
-    create_excel(game_time, platinium_time, data)
+    create_excel(game_time, platinium_time, data, is_xls)
 
     print("Hoja de cálculo generada exitosamente.")
 except Exception as e:

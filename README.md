@@ -42,7 +42,7 @@ Una vez configurado todo, puedes ejecutar el proyecto con el siguiente comando:
    ```bash
    python app.py
    ```
-El script obtendrá datos de varias fuentes en función del título de los videojuegos que ingreses.
+El script obtendrá datos de varias fuentes en función del título de los videojuegos que ingreses exportandolo a un xls o csv dependiendo de como lo configures.
 
 ## ⚙️ Librerías necesarias
 Las principales librerías que necesitas son:
@@ -51,6 +51,7 @@ Las principales librerías que necesitas son:
 - beautifulsoup4
 - selenium
 - webdriver_manager
+- panda
 - pytest (para pruebas)
 
 Consulta el archivo requirements.txt para más detalles.

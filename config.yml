@@ -3,3 +3,4 @@ PSN:
   platforms: [PS5, PS4, PS3, PSVITA]  # Lista de plataformas que te interesan. [PS5, PS4, PS3, PSVITA]
   game_time: True  # Indica si quieres registrar el tiempo de juego.
   platinium_time: True  # Indica si quieres registrar el tiempo necesario para el platino.
+  export: xls  # csv | xls

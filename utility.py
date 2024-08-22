@@ -1,3 +1,4 @@
+import csv
 from difflib import SequenceMatcher
 import json
 import re
@@ -97,15 +98,27 @@ def matcher_game(titulo_original, posibles_titulos, label, class_method):
     return mejor_coincidencia
 
 
-def create_excel(game_time, platinium_time, data):
+def create_excel(game_time, platinium_time, data, is_xls=True):
     columns_excel = ['Plataforma', 'Metacritic', 'Videojuego', '% Trofeos', 'Puntuación']
     if game_time:
         columns_excel.extend(['Howlongtobeat', 'Duración', 'Calidad'])
     if platinium_time:
         columns_excel.extend(['Platprices', 'Dificultad trofeos', 'Duración trofeos', 'Calidad trofeos'])
 
-    df = pd.DataFrame(sorted(data, key=lambda x: x[-1], reverse=True), columns=columns_excel)
-    df.to_excel('psn_juegos.xlsx', index=False)
+    try:
+        if is_xls:
+            df = pd.DataFrame(sorted(data, key=lambda x: x[-1], reverse=True), columns=columns_excel)
+            df.to_excel('psn_juegos.xlsx', index=False)
+            print("Excel exportado exitosamente.")
+        else:
+            raise ImportError  # Forzamos la exportación a CSV si is_xls es False
+    except ImportError:
+        with open('psn_juegos.csv', mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerow(columns_excel)
+            for row in sorted(data, key=lambda x: x[-1], reverse=True):
+                writer.writerow(row)
+        print("Exportando como CSV.")
 
 
 def process_time(num_titles, start_time, i):
