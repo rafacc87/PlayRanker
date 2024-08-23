@@ -47,6 +47,7 @@ El script obtendrá datos de varias fuentes en función del título de los video
 ## ⚙️ Librerías necesarias
 Las principales librerías que necesitas son:
 
+- [psnawp](https://pypi.org/project/PSNAWP/)
 - requests
 - beautifulsoup4
 - selenium
@@ -62,6 +63,10 @@ Para ejecutar las pruebas unitarias, utiliza pytest:
    ```bash
    pytest
    ```
+## 🙏 Agradecimientos
+
+Este proyecto nació gracias a la inspiración obtenida del video [Por qué NUNCA TERMINAS tus JUEGOS](https://www.youtube.com/watch?v=yCWmnEHR1CI) de [Betto](https://www.youtube.com/@SrtoBetto). Su contenido fue fundamental para el desarrollo de este proyecto. Gracias a este contenido, pude llevar a cabo esta automatización.
+
 ## 🏗️ Estructura del Proyecto
    ```bash
       PlayRanker/
