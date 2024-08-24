@@ -38,10 +38,10 @@ def metracritic_score(game_title):
         print(f"Error obteniendo puntuación de Metacritic para {game_title}: {e}")
 
     # Obtenemos las posibles revisiones de criticos si las hubiera y hacemos la media
-    result_review = get_reviews(result_review, metacritic_url, 'critic-reviews')
+    result_review = get_reviews(result_review, metacritic_url, 'critic-reviews', True)
 
     # Obtenemos las posibles revisiones de los usuarios si las hubiera y hacemos la media
-    result_user = get_reviews(result_user, metacritic_url, 'user-reviews')
+    result_user = get_reviews(result_user, metacritic_url, 'user-reviews', False)
 
     if result_review == 0:
         result_review = result_user
@@ -58,7 +58,7 @@ def howlongtobeat_time(game_title):
     try:
         try:
             soup = open_page_wait(hltb_url, 'back_darkish')
-        except Exception:
+        except Exception as e:
             return hltb_url, duration
 
         # Obtener todos los contenedores de juegos
@@ -130,7 +130,7 @@ def platprices_difficulty(game_title):
     return url, difficulty, duration
 
 
-def get_reviews(result, metacritic_url, path):
+def get_reviews(result, metacritic_url, path, divid):
     if result == 0:
         try:
             metacritic_critic_reviews_url = f"{metacritic_url}{path}/"
@@ -143,7 +143,10 @@ def get_reviews(result, metacritic_url, path):
                 scores.append(tiempo_text)
 
             if scores:
-                result = sum(scores) / len(scores)
+                result = sum(scores)
+                if divid:
+                    result = result / 10
+                result = result / len(scores)
                 if result < 1:
                     result = 1
         except Exception:

@@ -1,12 +1,12 @@
 import time
-from bs4 import BeautifulSoup  # type: ignore
-from selenium import webdriver  # type: ignore
-from selenium.webdriver.chrome.service import Service as ChromeService  # type: ignore
-from selenium.webdriver.common.by import By  # type: ignore
-from selenium.webdriver.support.ui import WebDriverWait  # type: ignore
-from selenium.webdriver.support import expected_conditions as EC  # type: ignore
-from selenium.webdriver.chrome.options import Options  # type: ignore
-from webdriver_manager.chrome import ChromeDriverManager  # type: ignore
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 
 driver: any = None
 
