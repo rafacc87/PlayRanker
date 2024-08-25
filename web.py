@@ -58,7 +58,7 @@ def howlongtobeat_time(game_title):
     try:
         try:
             soup = open_page_wait(hltb_url, 'back_darkish')
-        except Exception as e:
+        except Exception:
             return hltb_url, duration
 
         # Obtener todos los contenedores de juegos
@@ -170,46 +170,18 @@ def get_score_metracritic(soup, class_name, divid):
 
 def read_psn(psn, game_time, platinium_time, titles, start_time):
     data = []
-    data_filter = []
-    total = 0
-    plat_count = 0
-
-    for i, title in enumerate(titles):
-        total = titles._total_item_count
-
-        # Obtener y filtrar por plataformas del juego
-        platforms_list = [p.value for p in title.title_platform]
-        filter_list = psn['platforms']
-        if filter_list:
-            filtered_platforms = [p for p in platforms_list if p in filter_list]
-        else:
-            filtered_platforms = []
-        if len(filtered_platforms) < 1:
-            continue
-
-        # Descartamos platinos completados o que no tengan
-        plt_earned = title.earned_trophies.platinum
-        plt_defined = title.defined_trophies.platinum
-        if plt_defined > 0 and plt_earned != plt_defined:
-            data_filter.append(title)
-        elif plt_earned > 0:
-            plat_count += 1
+    data_filter, total, plat_count = get_games_psn(psn, titles)
 
     num_titles = len(data_filter)
     print(f"Se van a revisar {num_titles} de los {total} juegos que tienes. Ya tienes {plat_count} platinos!!!")
     for i2, title in enumerate(data_filter):
-        progress = title.progress
-
         # Obtener y filtrar por plataformas del juego
         platforms_list = [p.value for p in title.title_platform]
-        filter_list = psn['platforms']
-        if filter_list:
-            filtered_platforms = [p for p in platforms_list if p in filter_list]
-        else:
-            filtered_platforms = []
         platforms = ', '.join(platforms_list)
+
         game_title = title.title_name.replace('\n', '')
-        
+        progress = title.progress
+
         # Obtener puntuación de Metacritic
         url_metacritic, score = metracritic_score(get_alias(game_title, 'metacritic'))
 
@@ -234,3 +206,31 @@ def read_psn(psn, game_time, platinium_time, titles, start_time):
         # Calcular tiempo transcurrido y restante
         process_time(num_titles, start_time, i2)
     return num_titles, data
+
+
+def get_games_psn(psn, titles):
+    data_filter = []
+    total = 0
+    plat_count = 0
+
+    for i, title in enumerate(titles):
+        total = titles._total_item_count
+
+        # Obtener y filtrar por plataformas del juego
+        platforms_list = [p.value for p in title.title_platform]
+        filter_list = psn['platforms']
+        if filter_list:
+            filtered_platforms = [p for p in platforms_list if p in filter_list]
+        else:
+            filtered_platforms = []
+        if len(filtered_platforms) < 1:
+            continue
+
+        # Descartamos platinos completados o que no tengan
+        plt_earned = title.earned_trophies.platinum
+        plt_defined = title.defined_trophies.platinum
+        if plt_defined > 0 and plt_earned != plt_defined:
+            data_filter.append(title)
+        elif plt_earned > 0:
+            plat_count += 1
+    return data_filter, total, plat_count
