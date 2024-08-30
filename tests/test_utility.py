@@ -1,3 +1,4 @@
+import os
 from bs4 import BeautifulSoup
 import pytest
 from unittest.mock import MagicMock, patch, mock_open
@@ -8,7 +9,7 @@ import yaml
 @patch("builtins.open", new_callable=mock_open, read_data="key: value")
 def test_load_config(mock_file):
     config = utility.load_config()
-    mock_file.assert_called_once_with("config.yml", 'r')                                                                                                                                                                                                                                                                                                                                                                             
+    mock_file.assert_called_once_with(os.path.join(os.path.abspath("."), "config.yml"), 'r')
     assert config == {"key": "value"}
 
 
