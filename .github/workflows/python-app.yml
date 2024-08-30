@@ -67,3 +67,12 @@ jobs:
         asset_path: ./dist/PlayRanker.exe
         asset_name: PlayRanker.exe
         asset_content_type: application/octet-stream
+    - name: Upload config.yml
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./config.yml
+        asset_name: config.yml
+        asset_content_type: application/octet-stream
