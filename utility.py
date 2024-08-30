@@ -15,17 +15,21 @@ alias_data: any = None
 
 
 def get_resource_path(relative_path):
-    """ Obtiene la ruta absoluta al recurso. Funciona tanto en desarrollo como con PyInstaller. """
-    try:
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
+    """Obtiene la ruta absoluta al recurso, ya sea en desarrollo o empaquetado."""
+    if getattr(sys, 'frozen', False):
+        # Ejecutándose como un archivo empaquetado por PyInstaller
+        base_path = os.path.dirname(sys.executable)
+    else:
+        # Ejecutándose en un entorno de desarrollo
+        base_path = os.path.dirname(os.path.abspath(__file__))
 
     return os.path.join(base_path, relative_path)
 
 
 def load_config():
     config_path = get_resource_path("config.yml")
+    if not os.path.isfile(config_path):
+        raise FileNotFoundError(f"No se encontró el archivo de configuración: {config_path}")
     with open(config_path, 'r') as ymlfile:
         cfg = yaml.safe_load(ymlfile)
     return cfg
