@@ -43,7 +43,7 @@ jobs:
     - name: Build executable
       shell: pwsh
       run: |
-        pyinstaller --onefile --add-data "config.yml;." --name PlayRanker.exe app.py
+        pyinstaller --onefile --name PlayRanker.exe app.py
     - name: Get version number
       id: get_version
       shell: pwsh
