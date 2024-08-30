@@ -46,8 +46,13 @@ jobs:
     - name: Get version number
       id: get_version
       run: echo "version=v0.1.$(git rev-list --count HEAD)" >> $GITHUB_ENV
-    - name: Debug version
-      run: echo "The version is ${{ env.version }}"    
+    - name: Create zip file
+      run: |
+        mkdir -p release
+        cp ./dist/PlayRanker.exe release/PlayRanker.exe
+        cp ./config.yml release/config.yml
+        cd release
+        zip -r PlayRanker.zip PlayRanker.exe config.yml
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1.1.0
@@ -64,15 +69,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/PlayRanker.exe
-        asset_name: PlayRanker.exe
-        asset_content_type: application/octet-stream
-    - name: Upload config.yml
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./config.yml
-        asset_name: config.yml
-        asset_content_type: application/octet-stream
+        asset_path: ./release/PlayRanker.zip
+        asset_name: PlayRanker.zip
+        asset_content_type: application/zip
