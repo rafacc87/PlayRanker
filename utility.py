@@ -1,7 +1,9 @@
 import csv
 from difflib import SequenceMatcher
 import json
+import os
 import re
+import sys
 import time
 import pandas as pd
 import requests
@@ -12,8 +14,19 @@ gist_url = "https://gist.githubusercontent.com/rafacc87/03b8cf3b7c903d5412f64217
 alias_data: any = None
 
 
+def get_resource_path(relative_path):
+    """ Obtiene la ruta absoluta al recurso. Funciona tanto en desarrollo como con PyInstaller. """
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
 def load_config():
-    with open("config.yml", 'r') as ymlfile:
+    config_path = get_resource_path("config.yml")
+    with open(config_path, 'r') as ymlfile:
         cfg = yaml.safe_load(ymlfile)
     return cfg
 

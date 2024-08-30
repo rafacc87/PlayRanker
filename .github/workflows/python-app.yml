@@ -37,9 +37,10 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
-    # - name: Build executable
-      # run: |
-        # pyinstaller --onefile app.py
+    - name: Build executable
+      run: |
+        pyinstaller --onefile --add-data "config.yml:."  --name PlayRanker.exe app.py
+      # pyinstaller PlayRanker.spec 
     # - name: Get version number
       # id: get_version
       # run: echo "version=v1.0.$(git rev-list --count HEAD)" >> $GITHUB_ENV

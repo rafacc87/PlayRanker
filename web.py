@@ -1,6 +1,7 @@
+import time
 from bs4 import BeautifulSoup
 import requests
-from selenium_tools import open_page_wait
+from selenium_tools import initialize_selenium, open_page_wait
 from utility import convert_time, get_alias, matcher_game, process_time, string_parse_for_url
 
 
@@ -168,12 +169,17 @@ def get_score_metracritic(soup, class_name, divid):
     return result
 
 
-def read_psn(psn, game_time, platinium_time, titles, start_time):
+def read_psn(psn, game_time, platinium_time, titles):
     data = []
     data_filter, total, plat_count = get_games_psn(psn, titles)
 
+    if game_time:
+        print("Iniciando recursos necesarios...")
+        initialize_selenium()
+
     num_titles = len(data_filter)
     print(f"Se van a revisar {num_titles} de los {total} juegos que tienes. Ya tienes {plat_count} platinos!!!")
+    start_time = time.time()
     for i2, title in enumerate(data_filter):
         # Obtener y filtrar por plataformas del juego
         platforms_list = [p.value for p in title.title_platform]
