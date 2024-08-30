@@ -44,6 +44,8 @@ jobs:
     - name: Get version number
       id: get_version
       run: echo "version=v1.0.$(git rev-list --count HEAD)" >> $GITHUB_ENV
+    - name: Debug version
+      run: echo "The version is ${{ env.version }}"    
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1
@@ -61,5 +63,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./dist/app
-        asset_name: PlayRanker-${{ env.version }}
+        asset_name: PlayRanker.exe
         asset_content_type: application/octet-stream
