@@ -50,7 +50,7 @@ jobs:
       run: echo "The version is ${{ env.version }}"    
     - name: Create GitHub Release
       id: create_release
-      uses: actions/create-release@v1
+      uses: actions/create-release@v1.1.0
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
