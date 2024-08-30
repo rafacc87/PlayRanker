@@ -15,7 +15,7 @@ permissions:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
@@ -41,18 +41,16 @@ jobs:
         pytest
     - name: Build executable
       run: |
-        pyinstaller --onefile --add-data "config.yml:."  --name PlayRanker.exe app.py
-      # pyinstaller PlayRanker.spec 
+        pyinstaller --onefile --add-data "config.yml;." --name PlayRanker.exe app.py
     - name: Get version number
       id: get_version
       run: echo "version=v0.1.$(git rev-list --count HEAD)" >> $GITHUB_ENV
     - name: Create zip file
       run: |
-        mkdir -p release
-        cp ./dist/PlayRanker.exe release/PlayRanker.exe
-        cp ./config.yml release/config.yml
-        cd release
-        zip -r PlayRanker.zip PlayRanker.exe config.yml
+        New-Item -Path release -ItemType Directory -Force
+        Copy-Item -Path .\dist\PlayRanker.exe -Destination .\release\PlayRanker.exe
+        Copy-Item -Path .\config.yml -Destination .\release\config.yml
+        Compress-Archive -Path .\release\* -DestinationPath .\release\PlayRanker.zip
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1.1.0
