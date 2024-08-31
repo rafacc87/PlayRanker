@@ -1,6 +1,15 @@
 PSN:
+  active: False
   token: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX # Tu token de autenticación para PSN.
   platforms: [PS5, PS4, PS3, PSVITA]  # Lista de plataformas que te interesan. [PS5, PS4, PS3, PSVITA]
   game_time: True  # Indica si quieres registrar el tiempo de juego.
   platinium_time: True  # Indica si quieres registrar el tiempo necesario para el platino.
   export: xls  # csv | xls
+document:
+  active: True
+  name: PLAN MALVADO DER BETTO.xlsx
+  colum_name: C
+  game_time: True  # Indica si quieres registrar el tiempo de juego.
+  platinium_time: False  # Para juegos PSN
+Steam:
+Microsoft:

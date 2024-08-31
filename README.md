@@ -2,9 +2,8 @@
 
 La herramienta definitiva para los jugadores que buscan evaluar la dificultad y calidad de los juegos en PSN. Obtén un análisis detallado de trofeos, puntuaciones y tiempo de juego para encontrar los mejores juegos que se ajusten a tus preferencias.
 
-![Python Version](https://img.shields.io/badge/python-3.12%2B-blue)
+![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)
 [![PlayRanker](https://github.com/rafacc87/PlayRanker/actions/workflows/python-app.yml/badge.svg)](https://github.com/rafacc87/PlayRanker/actions/workflows/python-app.yml)
-![Test Coverage](https://img.shields.io/codecov/c/github/rafacc87/PlayRanker)
 
 ## 🛠️ Instalación
 
@@ -64,7 +63,7 @@ Para ejecutar las pruebas unitarias, utiliza pytest:
    pytest
    ```
 ## 🔮 Futuros Desarrollos
-- **Actualización Automática de Datos:** Implementar una funcionalidad que permita actualizar los tiempos de juego, puntuaciones y otros datos del fichero existente o de un archivo con solo los nombres de los juegos, sin necesidad de ejecutar todo el proceso desde cero.
+- **Actualización Automática de Datos:** Implementar una funcionalidad que permita actualizar los tiempos de juego, puntuaciones y otros datos del fichero existente o de un archivo con solo los nombres de los juegos, sin necesidad de ejecutar todo el proceso desde cero. **(EN DESARROLLO)**
 
 - **Automatización del Proceso de Tokenización**: Automatizar el proceso de obtención y renovación del token npsso, de manera que la autenticación con PSN sea más fluida y requiera menos intervención manual por parte del usuario.
 
