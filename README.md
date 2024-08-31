@@ -63,6 +63,21 @@ Para ejecutar las pruebas unitarias, utiliza pytest:
    ```bash
    pytest
    ```
+## 🔮 Futuros Desarrollos
+- **Actualización Automática de Datos:** Implementar una funcionalidad que permita actualizar los tiempos de juego, puntuaciones y otros datos del fichero existente o de un archivo con solo los nombres de los juegos, sin necesidad de ejecutar todo el proceso desde cero.
+
+- **Automatización del Proceso de Tokenización**: Automatizar el proceso de obtención y renovación del token npsso, de manera que la autenticación con PSN sea más fluida y requiera menos intervención manual por parte del usuario.
+
+- **Interfaz Gráfica de Usuario (GUI):** Desarrollar una interfaz gráfica que facilite la interacción con la aplicación, permitiendo a los usuarios gestionar sus listas de juegos y generar informes de manera más intuitiva.
+
+- **Integración con APIs Adicionales:** Incorporar datos de otras fuentes o servicios API que ofrezcan más detalles sobre los juegos, como estadísticas de logros, tendencias de popularidad o análisis de usuarios.
+
+- **Sistema de Recomendaciones:** Basado en los datos recopilados, crear un sistema que sugiera juegos similares a los que el usuario ya ha disfrutado, optimizando la búsqueda de nuevos títulos.
+
+- **Soporte Multiplataforma:** Ampliar el soporte de la herramienta para incluir juegos de otras plataformas, como Xbox, Steam o Nintendo Switch, permitiendo una comparación cruzada entre plataformas.
+
+- **Exportación a Formatos Adicionales:** Permitir la exportación de datos en otros formatos populares como PDF o Google Sheets, facilitando su acceso y distribución.
+
 ## 🙏 Agradecimientos
 
 Este proyecto nació gracias a la inspiración obtenida del video [Por qué NUNCA TERMINAS tus JUEGOS](https://www.youtube.com/watch?v=yCWmnEHR1CI) de [Betto](https://www.youtube.com/@SrtoBetto). Su contenido fue fundamental para el desarrollo de este proyecto. Gracias a este contenido, pude llevar a cabo esta automatización.
