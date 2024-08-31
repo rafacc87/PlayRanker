@@ -115,6 +115,18 @@ def matcher_game(titulo_original, posibles_titulos, label, class_method):
     return mejor_coincidencia
 
 
+def validate_data(data, expected_length, columns_excel):
+    for row in data:
+        if len(row) != expected_length:
+            # Imprimir los nombres de las columnas y la primera línea de datos
+            if data:
+                print("Columnas:", columns_excel)
+                print("Primera línea de datos:", data[0])
+            print(f"Error: Row {row} does not have the expected {expected_length} values.")
+            return False
+    return True
+
+
 def create_excel(game_time, platinium_time, data, is_xls=True):
     columns_excel = ['Plataforma', 'Metacritic', 'Videojuego', '% Trofeos', 'Puntuación']
     if game_time:
@@ -123,6 +135,10 @@ def create_excel(game_time, platinium_time, data, is_xls=True):
         columns_excel.extend(['Platprices', 'Dificultad trofeos', 'Duración trofeos', 'Calidad trofeos'])
 
     try:
+        expected_length = len(columns_excel)
+        if not validate_data(data, expected_length, columns_excel):
+            return
+
         if is_xls:
             df = pd.DataFrame(sorted(data, key=lambda x: x[-1], reverse=True), columns=columns_excel)
             df.to_excel('psn_juegos.xlsx', index=False)
