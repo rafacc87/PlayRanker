@@ -211,7 +211,7 @@ def read_psn(psn, game_time, platinium_time, titles):
 
         # Calcular tiempo transcurrido y restante
         process_time(num_titles, start_time, i2)
-    return num_titles, data
+    return num_titles, data, start_time
 
 
 def get_games_psn(psn, titles):
