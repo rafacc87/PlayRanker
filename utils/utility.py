@@ -27,12 +27,19 @@ def get_resource_path(relative_path):
 
 
 def load_config():
-    config_path = get_resource_path("config.yml")
+    config_path = get_resource_path("../config.yml")
     if not os.path.isfile(config_path):
         raise FileNotFoundError(f"No se encontró el archivo de configuración: {config_path}")
     with open(config_path, 'r') as ymlfile:
         cfg = yaml.safe_load(ymlfile)
     return cfg
+
+
+def try_get_config(config, name):
+    try:
+        return config[name]
+    except Exception:
+        return None
 
 
 def get_alias(game_title, origin):
@@ -127,8 +134,11 @@ def validate_data(data, expected_length, columns_excel):
     return True
 
 
-def create_excel(game_time, platinium_time, data, is_xls=True):
-    columns_excel = ['Plataforma', 'Metacritic', 'Videojuego', '% Trofeos', 'Puntuación']
+def create_excel(game_time, platinium_time, data, is_xls=True, platforms=True):
+    columns_excel = []
+    if platforms:
+        columns_excel = ['Plataforma']
+    columns_excel.extend(['Metacritic', 'Videojuego', '% Trofeos', 'Puntuación'])
     if game_time:
         columns_excel.extend(['Howlongtobeat', 'Duración', 'Calidad'])
     if platinium_time:
@@ -141,7 +151,7 @@ def create_excel(game_time, platinium_time, data, is_xls=True):
 
         if is_xls:
             df = pd.DataFrame(sorted(data, key=lambda x: x[-1], reverse=True), columns=columns_excel)
-            df.to_excel('psn_juegos.xlsx', index=False)
+            df.to_excel('documents/psn_juegos.xlsx', index=False)
             print("Excel exportado exitosamente.")
         else:
             raise ImportError  # Forzamos la exportación a CSV si is_xls es False
@@ -164,9 +174,9 @@ def process_time(num_titles, start_time, i):
     if minutes > 9:
         print(f"Procesando juegos: {i + 1}/{num_titles} ({(i + 1) / num_titles:.2%}) - Tiempo restante: {int(minutes)} minutos       ", end='\r')
     elif minutes > 0:
-        print(f"Procesando juegos: {i + 1}/{num_titles} ({(i + 1) / num_titles:.2%}) - Tiempo restante: {int(minutes)} min {seconds:.2f} seg     ", end='\r')
+        print(f"Procesando juegos: {i + 1}/{num_titles} ({(i + 1) / num_titles:.2%}) - Tiempo restante: {int(minutes)} min {int(seconds)} seg     ", end='\r')
     else:
-        print(f"Procesando juegos: {i + 1}/{num_titles} ({(i + 1) / num_titles:.2%}) - Tiempo restante: {seconds:.2f} segundos          ", end='\r')
+        print(f"Procesando juegos: {i + 1}/{num_titles} ({(i + 1) / num_titles:.2%}) - Tiempo restante: {int(seconds)} segundos          ", end='\r')
 
 
 def end_time(start_time, num_titles):

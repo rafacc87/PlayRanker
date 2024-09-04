@@ -1,8 +1,8 @@
 import time
 from bs4 import BeautifulSoup
 import requests
-from selenium_tools import initialize_selenium, open_page_wait
-from utility import convert_time, get_alias, matcher_game, process_time, string_parse_for_url
+from utils.selenium_tools import initialize_selenium, open_page_wait
+from utils.utility import convert_time, get_alias, matcher_game, process_time, string_parse_for_url, try_get_config
 
 
 def metracritic_score(game_title):
@@ -10,7 +10,7 @@ def metracritic_score(game_title):
     try:
         # Search game
         title = string_parse_for_url(game_title)
-        metacritic_search = f"https://www.metacritic.com/search/{title}"
+        metacritic_search = f"https://www.metacritic.com/search/{title}/?category=13"
         headers = {'User-Agent': 'Mozilla/5.0'}
         response = requests.get(metacritic_search, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -188,30 +188,38 @@ def read_psn(psn, game_time, platinium_time, titles):
         game_title = title.title_name.replace('\n', '')
         progress = title.progress
 
-        # Obtener puntuación de Metacritic
-        url_metacritic, score = metracritic_score(get_alias(game_title, 'metacritic'))
-
-        # Obtener duración del juego desde HowLongToBeat
-        if game_time:
-            # main_story = obtener_tiempo_juego(game_title, 'Main Story')
-            # main_extra = obtener_tiempo_juego(game_title, 'Main + Extra')
-            url_howlongtobeat, duration = howlongtobeat_time(get_alias(game_title, 'howlongtobeat'))
-
-        # Obtener tiempo platino
-        if platinium_time:
-            url_platprices, difficulty_platinium, duration_platinium = platprices_difficulty(get_alias(game_title, 'platprices'))
-
-        # Valores de las columnas
-        columns_values = [platforms, url_metacritic, game_title, progress, score]
-        if game_time:
-            columns_values.extend([url_howlongtobeat, duration, score / duration])
-        if platinium_time:
-            columns_values.extend([url_platprices, difficulty_platinium, duration_platinium, score / duration_platinium])
+        columns_values = read_title_data(game_title, game_time, platinium_time, platforms, progress)
         data.append(columns_values)
 
         # Calcular tiempo transcurrido y restante
         process_time(num_titles, start_time, i2)
     return num_titles, data, start_time
+
+
+def read_title_data(game_title, game_time, platinium_time, platforms, progress):
+    # Obtener puntuación de Metacritic
+    url_metacritic, score = metracritic_score(get_alias(game_title, 'metacritic'))
+
+    # Obtener duración del juego desde HowLongToBeat
+    if game_time:
+        # main_story = obtener_tiempo_juego(game_title, 'Main Story')
+        # main_extra = obtener_tiempo_juego(game_title, 'Main + Extra')
+        url_howlongtobeat, duration = howlongtobeat_time(get_alias(game_title, 'howlongtobeat'))
+
+    # Obtener tiempo platino
+    if platinium_time:
+        url_platprices, difficulty_platinium, duration_platinium = platprices_difficulty(get_alias(game_title, 'platprices'))
+
+    # Valores de las columnas
+    columns_values = []
+    if platforms:
+        columns_values = [platforms]
+    columns_values.extend([url_metacritic, game_title, progress, score])
+    if game_time:
+        columns_values.extend([url_howlongtobeat, duration, score / duration])
+    if platinium_time:
+        columns_values.extend([url_platprices, difficulty_platinium, duration_platinium, score / duration_platinium])
+    return columns_values
 
 
 def get_games_psn(psn, titles):
@@ -224,7 +232,7 @@ def get_games_psn(psn, titles):
 
         # Obtener y filtrar por plataformas del juego
         platforms_list = [p.value for p in title.title_platform]
-        filter_list = psn['platforms']
+        filter_list = try_get_config(psn, 'platforms')
         if filter_list:
             filtered_platforms = [p for p in platforms_list if p in filter_list]
         else:
