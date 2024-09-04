@@ -64,7 +64,7 @@ Para ejecutar las pruebas unitarias, utiliza pytest:
    ```
 ## 🚀 Desarrollos Completados
 
-1. **Obtención de Datos desde un Documento:**
+- **Obtención de Datos desde un Documento:**
    - Se ha implementado la funcionalidad para obtener datos de los videojuegos desde un archivo de tipo `CSV` o `Excel`. Los usuarios pueden configurar el archivo desde el cual se extraerán los datos en el archivo de configuración `config.yml`.
    - Los formatos de archivo soportados incluyen `CSV` y `Excel` (`xls` o `xlsx`), y se valida que el archivo y las columnas especificadas existan antes de procesarlos.
    - Configuración en `config.yml`:
@@ -77,20 +77,11 @@ Para ejecutar las pruebas unitarias, utiliza pytest:
        platinium_time: True  # Registro del tiempo necesario para obtener el platino
      ```
 
-2. **Soporte para Varias Extensiones de Archivo:**
-   - La aplicación reconoce y procesa automáticamente archivos con extensiones `.csv`, `.xls`, y `.xlsx`. En función de la extensión, se utilizarán las bibliotecas adecuadas para la lectura del archivo (`pandas`).
-   
-3. **Manejo de Errores:**
-   - Si la columna especificada no existe en el archivo o si la ruta del archivo es incorrecta, se generarán errores detallados para que el usuario pueda corregir la configuración.
-
-4. **Interfaz Gráfica de Usuario (GUI) (en progreso):**
-   - Comienzo del desarrollo de una interfaz gráfica de usuario para facilitar la interacción con la aplicación y mejorar la experiencia de usuario.
-   
 ## 🔮 Futuros Desarrollos
 
 - **Automatización del Proceso de Tokenización**: Automatizar el proceso de obtención y renovación del token npsso, de manera que la autenticación con PSN sea más fluida y requiera menos intervención manual por parte del usuario.
 
-- **Interfaz Gráfica de Usuario (GUI):** Desarrollar una interfaz gráfica que facilite la interacción con la aplicación, permitiendo a los usuarios gestionar sus listas de juegos y generar informes de manera más intuitiva.
+- **Interfaz Gráfica de Usuario (GUI) (en progreso):** Desarrollar una interfaz gráfica que facilite la interacción con la aplicación, permitiendo a los usuarios gestionar sus listas de juegos y generar informes de manera más intuitiva.
 
 - **Integración con APIs Adicionales:** Incorporar datos de otras fuentes o servicios API que ofrezcan más detalles sobre los juegos, como estadísticas de logros, tendencias de popularidad o análisis de usuarios.
 
