@@ -62,8 +62,31 @@ Para ejecutar las pruebas unitarias, utiliza pytest:
    ```bash
    pytest
    ```
+## 🚀 Desarrollos Completados
+
+1. **Obtención de Datos desde un Documento:**
+   - Se ha implementado la funcionalidad para obtener datos de los videojuegos desde un archivo de tipo `CSV` o `Excel`. Los usuarios pueden configurar el archivo desde el cual se extraerán los datos en el archivo de configuración `config.yml`.
+   - Los formatos de archivo soportados incluyen `CSV` y `Excel` (`xls` o `xlsx`), y se valida que el archivo y las columnas especificadas existan antes de procesarlos.
+   - Configuración en `config.yml`:
+     ```yaml
+     document:
+       active: True  # Activa la funcionalidad
+       name: documents/steam_rafa.xlsx  # Ruta del archivo
+       column_name: Videojuegos Pendientes  # Columna con los títulos de los juegos
+       game_time: True  # Registro del tiempo de juego
+       platinium_time: True  # Registro del tiempo necesario para obtener el platino
+     ```
+
+2. **Soporte para Varias Extensiones de Archivo:**
+   - La aplicación reconoce y procesa automáticamente archivos con extensiones `.csv`, `.xls`, y `.xlsx`. En función de la extensión, se utilizarán las bibliotecas adecuadas para la lectura del archivo (`pandas`).
+   
+3. **Manejo de Errores:**
+   - Si la columna especificada no existe en el archivo o si la ruta del archivo es incorrecta, se generarán errores detallados para que el usuario pueda corregir la configuración.
+
+4. **Interfaz Gráfica de Usuario (GUI) (en progreso):**
+   - Comienzo del desarrollo de una interfaz gráfica de usuario para facilitar la interacción con la aplicación y mejorar la experiencia de usuario.
+   
 ## 🔮 Futuros Desarrollos
-- **Actualización Automática de Datos:** Implementar una funcionalidad que permita actualizar los tiempos de juego, puntuaciones y otros datos del fichero existente o de un archivo con solo los nombres de los juegos, sin necesidad de ejecutar todo el proceso desde cero. **(EN DESARROLLO)**
 
 - **Automatización del Proceso de Tokenización**: Automatizar el proceso de obtención y renovación del token npsso, de manera que la autenticación con PSN sea más fluida y requiera menos intervención manual por parte del usuario.
 
