@@ -7,9 +7,9 @@ PSN:
   export: xls  # csv | xls
 document:
   active: True
-  name: PLAN MALVADO DER BETTO.xlsx
-  colum_name: C
+  name: documents/list_games.xlsx
+  column_name: title
   game_time: True  # Indica si quieres registrar el tiempo de juego.
-  platinium_time: False  # Para juegos PSN
+  platinium_time: True  # Para juegos PSN
 Steam:
 Microsoft:

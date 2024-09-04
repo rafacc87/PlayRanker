@@ -71,8 +71,8 @@ Para ejecutar las pruebas unitarias, utiliza pytest:
      ```yaml
      document:
        active: True  # Activa la funcionalidad
-       name: documents/steam_rafa.xlsx  # Ruta del archivo
-       column_name: Videojuegos Pendientes  # Columna con los títulos de los juegos
+       name: documents/list_games.xlsx  # Ruta del archivo
+       column_name: title  # Columna con los títulos de los juegos
        game_time: True  # Registro del tiempo de juego
        platinium_time: True  # Registro del tiempo necesario para obtener el platino
      ```
