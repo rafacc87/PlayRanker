@@ -52,6 +52,7 @@ jobs:
       shell: pwsh
       run: |
         New-Item -Path release -ItemType Directory -Force
+        New-Item -Path .\release\documents -ItemType Directory -Force
         Copy-Item -Path .\dist\PlayRanker.exe -Destination .\release\PlayRanker.exe
         Copy-Item -Path .\config.yml -Destination .\release\config.yml
         Compress-Archive -Path .\release\* -DestinationPath .\release\PlayRanker.zip
