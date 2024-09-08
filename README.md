@@ -120,7 +120,7 @@ Este proyecto nació gracias a la inspiración obtenida del video [Por qué NUNC
 
 Este proyecto no solo está inspirado por la pasión por los videojuegos y la programación, sino también por las personas que han sido parte de mi vida, quienes, con su apoyo, compañía y amistad, han dejado una huella profunda en mi corazón.
 
-Quiero dedicar un espacio especial a la memoria de mi amigo **Toni**, que tristemente nos dejó. Siempre recordaré cuando lo ayudamos a subir azulejos y rodapié hasta su nuevo piso, sin ascensor, para luego terminar compartiendo una comida en el suelo. También cuando vino a mi casa para ayudarme a instalar un ventilador de techo, un gesto generoso y típico de él. Toni era el mejor, y su ausencia deja un vacío enorme. Este proyecto también es para ti.
+Quiero dedicar un espacio especial a la memoria de mi amigo **Toni**, que tristemente nos dejó. Siempre recordaré cuando lo ayudamos a subir baldosas y rodapié hasta su nuevo piso, sin ascensor, para luego terminar compartiendo una comida en el suelo. También cuando vino a mi casa para ayudarme a instalar un ventilador de techo, un gesto generoso y típico de él. Toni era el mejor, y su ausencia deja un vacío enorme. Este proyecto también es para ti.
 
 ## 🏗️ Estructura del Proyecto
    ```bash
