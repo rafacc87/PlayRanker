@@ -5,7 +5,14 @@ La herramienta definitiva para los jugadores que buscan evaluar la dificultad y 
 ![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)
 [![PlayRanker](https://github.com/rafacc87/PlayRanker/actions/workflows/python-app.yml/badge.svg)](https://github.com/rafacc87/PlayRanker/actions/workflows/python-app.yml)
 
-## 🛠️ Instalación
+## 🚀 Última Versión
+¡No necesitas instalar Python para ejecutar PlayRanker! Puedes descargar la última release con el ejecutable listo para usar desde GitHub Releases:
+
+[![Descargar Última Release](https://img.shields.io/github/v/release/rafacc87/PlayRanker)](https://github.com/rafacc87/PlayRanker/releases/latest)
+
+## 🛠️ Instalación Manual
+
+Si prefieres clonar y ejecutar el proyecto con Python, sigue estos pasos:
 
 1. Clona el repositorio:
    ```bash
@@ -25,23 +32,39 @@ La herramienta definitiva para los jugadores que buscan evaluar la dificultad y 
 ## 🔑 Cómo obtener el Token de PSN
 Debes obtener el código de 64 caracteres de npsso. Debe seguir los siguientes pasos:
 
-Inicia sesión en tu cuenta [My PlayStation](https://www.playstation.com/).
+1. Inicia sesión en tu cuenta [My PlayStation](https://www.playstation.com/).
 
-En otra pestaña, vaya a [https://ca.account.sony.com/api/v1/ssocookie](https://ca.account.sony.com/api/v1/ssocookie).
+2. En otra pestaña, vaya a [https://ca.account.sony.com/api/v1/ssocookie](https://ca.account.sony.com/api/v1/ssocookie).
 
-Si ha iniciado sesión, debería ver un texto similar a este
-
-```json
-{"npsso":"<64 character npsso code>"}
-```
-Este código npsso se utilizará en la API para fines de autenticación. El token de actualización que se genera a partir de npsso dura aproximadamente 2 meses. Después de eso, debe obtener un nuevo token npsso. El bot imprimirá una advertencia si quedan menos de 3 días para que caduque el token de actualización.
+3. Si ha iniciado sesión, debería ver un texto similar a este
+   ```json
+   {"npsso":"<64 character npsso code>"}
+   ```
+4. Copia este código npsso, que te servirá para obtener y actualizar el token de autenticación.
 ## 🚀 Uso
-Una vez configurado todo, puedes ejecutar el proyecto con el siguiente comando:
 
+### Configuración para PSN
+
+Para obtener datos desde PSN, asegúrate de tener configurado el token `npsso` en el archivo `config.yml`. Aquí te mostramos cómo hacerlo:
+
+1. **Obtén tu token `npsso`** siguiendo los pasos de la sección [Cómo obtener el Token de PSN](#🔑-cómo-obtener-el-token-de-psn).
+   
+2. **Configura tu token en el archivo `config.yml`:**
+
+   ```yaml
+   PSN:
+     active: False  # Cambia a True para activar la funcionalidad de PSN
+     token: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"  # Tu token de autenticación para PSN.
+     platforms: [PS5, PS4, PS3, PSVITA]  # Lista de plataformas de las que te interesan los datos.
+     game_time: True  # Registrar el tiempo de juego.
+     platinium_time: True  # Registrar el tiempo necesario para obtener el platino.
+     export: xls  # Formato de exportación: csv o xls.
+   ```
+3. Una vez configurado todo, puedes ejecutar el proyecto con el siguiente comando:
    ```bash
    python app.py
    ```
-El script obtendrá datos de varias fuentes en función del título de los videojuegos que ingreses exportandolo a un xls o csv dependiendo de como lo configures.
+El script obtendrá datos de varias fuentes en función del título de los videojuegos que ingreses, exportándolos a un archivo xls o csv según lo configures.
 
 ## ⚙️ Librerías necesarias
 Las principales librerías que necesitas son:
@@ -95,17 +118,28 @@ Para ejecutar las pruebas unitarias, utiliza pytest:
 
 Este proyecto nació gracias a la inspiración obtenida del video [Por qué NUNCA TERMINAS tus JUEGOS](https://www.youtube.com/watch?v=yCWmnEHR1CI) de [Betto](https://www.youtube.com/@SrtoBetto). Su contenido fue fundamental para el desarrollo de este proyecto. Gracias a este contenido, pude llevar a cabo esta automatización.
 
+Este proyecto no solo está inspirado por la pasión por los videojuegos y la programación, sino también por las personas que han sido parte de mi vida, quienes, con su apoyo, compañía y amistad, han dejado una huella profunda en mi corazón.
+
+Quiero dedicar un espacio especial a la memoria de mi amigo **Toni**, que tristemente nos dejó. Siempre recordaré cuando lo ayudamos a subir azulejos y rodapié hasta su nuevo piso, sin ascensor, para luego terminar compartiendo una comida en el suelo. También cuando vino a mi casa para ayudarme a instalar un ventilador de techo, un gesto generoso y típico de él. Toni era el mejor, y su ausencia deja un vacío enorme. Este proyecto también es para ti.
+
 ## 🏗️ Estructura del Proyecto
    ```bash
       PlayRanker/
    │
-   ├── app.py               # Archivo principal
-   ├── selenium_tools.py    # Funciones relacionadas con Selenium
-   ├── utility.py           # Funciones auxiliares
-   ├── web.py               # Funciones relacionadas con el scraping
+   ├── app.py               # Archivo principal de la aplicación
+   ├── config.yml           # Archivo de configuración del proyecto
+   ├── core/
+   │   └── document.py      # Funciones para procesar documentos
+   ├── utils/
+   │   ├── selenium_tools.py  # Funciones relacionadas con Selenium
+   │   ├── utility.py         # Funciones auxiliares
+   │   └── web.py             # Funciones relacionadas con el scraping
+   ├── documents/           # Carpeta donde se almacenan los archivos del usuario
    ├── tests/               # Pruebas unitarias
+   │   ├── test_selenium_tools.py
+   │   ├── test_utility.py
    ├── README.md            # Documentación
-   └── requirements.txt     # Dependencias
+   ├── requirements.txt     # Dependencias
    ```
 
 ## 📝 Licencia
