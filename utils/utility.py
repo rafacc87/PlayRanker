@@ -14,20 +14,20 @@ gist_url = "https://gist.githubusercontent.com/rafacc87/03b8cf3b7c903d5412f64217
 alias_data: any = None
 
 
-def get_resource_path(relative_path):
+def get_resource_path():
     """Obtiene la ruta absoluta al recurso, ya sea en desarrollo o empaquetado."""
     if getattr(sys, 'frozen', False):
         # Ejecutándose como un archivo empaquetado por PyInstaller
         base_path = os.path.dirname(sys.executable)
+        return os.path.join(base_path, "config.yml")
     else:
         # Ejecutándose en un entorno de desarrollo
         base_path = os.path.dirname(os.path.abspath(__file__))
-
-    return os.path.join(base_path, relative_path)
+        return os.path.join(base_path, "../config.yml")
 
 
 def load_config():
-    config_path = get_resource_path("../config.yml")
+    config_path = get_resource_path()
     if not os.path.isfile(config_path):
         raise FileNotFoundError(f"No se encontró el archivo de configuración: {config_path}")
     with open(config_path, 'r') as ymlfile:

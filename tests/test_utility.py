@@ -6,13 +6,6 @@ import utils.utility  # Cambiar la ruta de importación a utils.utility
 import yaml
 
 
-def load_config():
-    # Cambiar para obtener una ruta absoluta de forma más directa
-    config_path = os.path.join(os.path.abspath(os.curdir), "config.yml")
-    with open(config_path, 'r') as file:
-        return yaml.safe_load(file)
-
-
 @patch('requests.get')
 def test_get_alias(mock_get):
     # Simulamos la respuesta de la API Gist
