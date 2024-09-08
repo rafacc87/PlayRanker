@@ -47,11 +47,12 @@ jobs:
     - name: Get version number
       id: get_version
       shell: pwsh
-      run: echo "version=v0.1.$(git rev-list --count HEAD)" >> $env:GITHUB_ENV
+      run: echo "version=v0.2.$(git rev-list --count HEAD)" >> $env:GITHUB_ENV
     - name: Create zip file
       shell: pwsh
       run: |
         New-Item -Path release -ItemType Directory -Force
+        New-Item -Path .\release\documents -ItemType Directory -Force
         Copy-Item -Path .\dist\PlayRanker.exe -Destination .\release\PlayRanker.exe
         Copy-Item -Path .\config.yml -Destination .\release\config.yml
         Compress-Archive -Path .\release\* -DestinationPath .\release\PlayRanker.zip
