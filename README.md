@@ -125,21 +125,21 @@ Quiero dedicar un espacio especial a la memoria de mi amigo **Toni**, que triste
 ## 🏗️ Estructura del Proyecto
    ```bash
       PlayRanker/
-   │
-   ├── app.py               # Archivo principal de la aplicación
-   ├── config.yml           # Archivo de configuración del proyecto
-   ├── core/
-   │   └── document.py      # Funciones para procesar documentos
-   ├── utils/
-   │   ├── selenium_tools.py  # Funciones relacionadas con Selenium
-   │   ├── utility.py         # Funciones auxiliares
-   │   └── web.py             # Funciones relacionadas con el scraping
-   ├── documents/           # Carpeta donde se almacenan los archivos del usuario
-   ├── tests/               # Pruebas unitarias
-   │   ├── test_selenium_tools.py
-   │   ├── test_utility.py
-   ├── README.md            # Documentación
-   ├── requirements.txt     # Dependencias
+      │
+      ├── app.py               # Archivo principal de la aplicación
+      ├── config.yml           # Archivo de configuración del proyecto
+      ├── core/
+      │   └── document.py      # Funciones para procesar documentos
+      ├── utils/
+      │   ├── selenium_tools.py  # Funciones relacionadas con Selenium
+      │   ├── utility.py         # Funciones auxiliares
+      │   └── web.py             # Funciones relacionadas con el scraping
+      ├── documents/           # Carpeta donde se almacenan los archivos del usuario
+      ├── tests/               # Pruebas unitarias
+      │   ├── test_selenium_tools.py
+      │   ├── test_utility.py
+      ├── README.md            # Documentación
+      ├── requirements.txt     # Dependencias
    ```
 
 ## 📝 Licencia
