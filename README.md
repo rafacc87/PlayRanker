@@ -47,7 +47,7 @@ Debes obtener el código de 64 caracteres de npsso. Debe seguir los siguientes p
 
 Para obtener datos desde PSN, asegúrate de tener configurado el token `npsso` en el archivo `config.yml`. Aquí te mostramos cómo hacerlo:
 
-1. **Obtén tu token `npsso`** siguiendo los pasos de la sección [Cómo obtener el Token de PSN](#🔑-cómo-obtener-el-token-de-psn).
+1. **Obtén tu token `npsso`** siguiendo los pasos de la sección [Cómo obtener el Token de PSN](#-cómo-obtener-el-token-de-psn).
    
 2. **Configura tu token en el archivo `config.yml`:**
 
